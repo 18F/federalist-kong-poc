@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
+    "copy": "cp src/static/* _site/",
     "dev": "KONG_ADMIN_URL=http://localhost:8001 rollup -c -w",
     "start": "sirv _site -p 5200",
     "federalist": "KONG_ADMIN_URL=https://federalist-kong-api.app.cloud.gov npm run build"
@@ -15,6 +16,7 @@
     "@rollup/plugin-replace": "^2.2.1",
     "rollup": "^1.27.12",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-copy": "^3.1.0",
     "rollup-plugin-livereload": "^1.0.4",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.1.1",

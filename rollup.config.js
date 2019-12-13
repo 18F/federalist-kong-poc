@@ -4,6 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
+import copy from 'rollup-plugin-copy';
 
 const outDir = '_site';
 
@@ -15,7 +16,7 @@ export default {
     sourcemap: true,
     format: 'esm',
     name: 'app',
-    file: `${outDir}/build/bundle.js`,
+    file: `${outDir}/bundle.js`,
   },
   plugins: [
     replace({ __KONG_ADMIN_URL__: process.env.KONG_ADMIN_URL }),
@@ -25,7 +26,7 @@ export default {
       // we'll extract any component CSS out into
       // a separate file — better for performance
       css: css => {
-        css.write(`${outDir}/build/bundle.css`);
+        css.write(`${outDir}/bundle.css`);
       },
     }),
 
@@ -39,6 +40,10 @@ export default {
       dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/'),
     }),
     commonjs(),
+
+    copy({
+      targets: [{ src: 'src/static/**/*', dest: outDir }],
+    }),
 
     // In dev mode, call `npm run start` once
     // the bundle has been generated
