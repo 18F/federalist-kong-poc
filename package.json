@@ -1,5 +1,5 @@
 {
-  "name": "kong-poc",
+  "name": "federalist-kong-poc",
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",

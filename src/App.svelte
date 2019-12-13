@@ -110,7 +110,7 @@
 </style>
 
 <main>
-  <h1>Kong PoC</h1>
+  <h1>Federalist Kong PoC</h1>
   <form on:submit|preventDefault={handleSubmit}>
     <label>Upstream Url</label>
     <input type="text" bind:value={url} required />
