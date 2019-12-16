@@ -182,7 +182,9 @@
       {#each $routes as route (route.id)}
         <tr>
           <td>
-            <a href="https://{route.hosts[0]}">{route.hosts[0]}</a>
+            <a href="https://{route.hosts[0]}" target="_blank" rel="noopener noreferrer">
+              {route.hosts[0]}
+            </a>
           </td>
           <td>{route.name ? route.name : ''}</td>
           <td>{route.id}</td>
