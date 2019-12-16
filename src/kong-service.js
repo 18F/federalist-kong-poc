@@ -8,6 +8,7 @@ async function createRepoConfiguration(url, host) {
   const route = await Api.routes.create({
     hosts: [`${host}-fks.app.cloud.gov`],
     service: { id: service.id },
+    preserve_host: true,
   });
 
   return { service, route };
