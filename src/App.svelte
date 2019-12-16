@@ -21,7 +21,7 @@
   });
 
   let url = '';
-  let path = '';
+  let host = '';
   let basicAuth = false;
   let username = '';
   let password = '';
@@ -29,7 +29,7 @@
   async function handleSubmit(event) {
     if (basicAuth && (!username || !password)) return;
 
-    const { service, route } = await KongService.createRepoConfiguration(url, path);
+    const { service, route } = await KongService.createRepoConfiguration(url, host);
     routes.update(s => [...s, route]);
     services.update(s => [...s, service]);
 
@@ -50,7 +50,7 @@
 
     // Reset
     url = '';
-    path = '';
+    host = '';
     basicAuth = false;
     username = '';
     password = '';
@@ -118,13 +118,13 @@
       For localhost this must be:
       <code>http://host.docker.internal:PORT/...</code>
     </p>
-    <label>External Path</label>
-    <input type="text" bind:value={path} required />
+    <label>External Host</label>
+    <input type="text" bind:value={host} required />
     <p>
       Ex: A value of
       <code>federalist</code>
       will result in an external url of
-      <code>https://federalist-kong.app.cloud.gov/federalist</code>
+      <code>https://federalist.sites.fks.app.cloud.gov</code>
     </p>
     <label>
       Basic Auth?
@@ -172,8 +172,7 @@
   <table>
     <thead>
       <tr>
-        <th>hosts</th>
-        <th>paths</th>
+        <th>host</th>
         <th>name</th>
         <th>id</th>
         <th />
@@ -182,8 +181,9 @@
     <tbody>
       {#each $routes as route (route.id)}
         <tr>
-          <td>{route.hosts.join(', ')}</td>
-          <td>{(route.paths || []).join(', ')}</td>
+          <td>
+            <a href="http://{route.hosts[0]}">{route.hosts[0]}</a>
+          </td>
           <td>{route.name ? route.name : ''}</td>
           <td>{route.id}</td>
           <td>

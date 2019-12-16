@@ -1,13 +1,12 @@
 import Api from './kong-api';
 
-async function createRepoConfiguration(url, path) {
+async function createRepoConfiguration(url, host) {
   // Create a service pointing to the url
   const service = await Api.services.create({ url });
 
   // Create a route for the service
   const route = await Api.routes.create({
-    hosts: ['federalist-kong.app.cloud.gov'],
-    paths: [`/${path}`],
+    hosts: [`${host}.sites.fks.app.cloud.gov`],
     service: { id: service.id },
   });
 
