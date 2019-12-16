@@ -124,7 +124,7 @@
       Ex: A value of
       <code>federalist</code>
       will result in an external url of
-      <code>https://federalist.sites.fks.app.cloud.gov</code>
+      <code>https://federalist-fks.app.cloud.gov</code>
     </p>
     <label>
       Basic Auth?
@@ -182,7 +182,7 @@
       {#each $routes as route (route.id)}
         <tr>
           <td>
-            <a href="http://{route.hosts[0]}">{route.hosts[0]}</a>
+            <a href="https://{route.hosts[0]}">{route.hosts[0]}</a>
           </td>
           <td>{route.name ? route.name : ''}</td>
           <td>{route.id}</td>
